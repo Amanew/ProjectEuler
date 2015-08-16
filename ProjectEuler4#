@@ -1,0 +1,59 @@
+n = 0
+p = 0
+i = 0
+n1 = 0
+n2 = 0
+dec = [0, 0, 0, 0, 0, 0]
+pal = 0
+candidat = 0
+max = 0
+count = 0
+
+def palindrome( candidat ):
+
+
+    dec[0] = candidat%10
+    dec[1] = (candidat - dec[0])/10%10
+    dec[2] = (candidat - dec[1] - dec[0])/100%10
+    dec[3] = (candidat - dec[2] - dec[1] - dec[0])/1000%10
+    dec[4] = (candidat - dec[3] - dec[2] - dec[1] - dec[0])/10000%10
+    dec[5] = (candidat - dec[4] - dec[3] - dec[2] - dec[1] - dec[0])/100000%10
+
+
+    if(count <= 2):
+        if(dec[count-1] == dec[0]):
+            return True
+    if(count == 3):
+        if(dec[count-1] == dec[0]):
+            return True
+    if(count == 4):
+        if(dec[count-1] == dec[0] and dec[count - 2] == dec[1]):
+            return True
+    if(count == 5):
+        if(dec[count-1] == dec[0] and dec[count - 2] == dec[1]):
+            return True
+    if(count == 6):
+        if(dec[count-1] == dec[0] and dec[count-2] == dec[1] and dec[count - 3] == dec[2]):
+            return True
+    if(count > 6):
+        print("Count over 6 wtf")
+    return
+
+while(n1 <= 999):
+    while(n2 <= 999):
+        candidat = n1*n2
+        while(10^(p) < candidat):
+            p = p + 1
+
+        count = p
+
+        print("count", count)
+        if (palindrome(candidat) and candidat >= max):
+            max = candidat
+            print(candidat)
+        n2 = n2 + 1
+        print(n1, n2)
+        print("max", max)
+    n1 = n1 + 1
+    n2 = 0
+print(max)
